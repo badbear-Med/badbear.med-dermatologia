@@ -1,0 +1,708 @@
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #eef3f8;
+
+    color: #17202a;
+}
+
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
+.cabecera {
+
+    background: white;
+
+    padding: 20px 4%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #d9e1e8;
+}
+
+
+.cabecera h1 {
+
+    margin: 0;
+
+    color: #0969ff;
+
+    font-size: 32px;
+}
+
+
+.cabecera p {
+
+    margin: 7px 0 0;
+
+    color: #64748b;
+}
+
+
+.marcador {
+
+    display: flex;
+
+    gap: 22px;
+
+    background: #f4f7fb;
+
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+}
+
+
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.contenedor {
+
+    max-width: 1250px;
+
+    margin: 30px auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 7px 28px rgba(0, 0, 0, 0.08);
+}
+
+
+
+/* =====================================================
+   PROGRESO
+===================================================== */
+
+.estado {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+
+.barra-fondo {
+
+    height: 11px;
+
+    width: 100%;
+
+    background: #e1e7ed;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    margin-bottom: 30px;
+}
+
+
+#barra-progreso {
+
+    width: 0;
+
+    height: 100%;
+
+    background: #0969ff;
+
+    transition: width 0.4s ease;
+}
+
+
+
+/* =====================================================
+   CASO
+===================================================== */
+
+.caso-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.2fr 1fr;
+
+    gap: 28px;
+
+    margin-bottom: 35px;
+}
+
+
+.zona-imagen {
+
+    width: 100%;
+}
+
+
+.imagen-box {
+
+    width: 100%;
+
+    height: 470px;
+
+    background: #111;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+}
+
+
+.imagen-box img {
+
+    display: none;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.cargando-imagen {
+
+    color: white;
+
+    text-align: center;
+
+    padding: 30px;
+
+    font-size: 18px;
+}
+
+
+.btn-secundario {
+
+    display: block;
+
+    margin: 12px auto 5px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #0969ff;
+
+    background: white;
+
+    color: #0969ff;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.btn-secundario:hover {
+
+    background: #eef5ff;
+}
+
+
+.fuente-imagen {
+
+    min-height: 20px;
+
+    margin: 8px 0 0;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+
+.fuente-imagen a {
+
+    color: #0969ff;
+}
+
+
+.caso-clinico {
+
+    padding: 28px;
+
+    background: #f1f6ff;
+
+    border-left: 6px solid #0969ff;
+
+    border-radius: 12px;
+}
+
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    background: #0969ff;
+
+    color: white;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+.caso-clinico h2 {
+
+    color: #0969ff;
+}
+
+
+.caso-clinico p {
+
+    font-size: 19px;
+
+    line-height: 1.75;
+}
+
+
+
+/* =====================================================
+   MORFOLOGÍA
+===================================================== */
+
+.evaluacion {
+
+    margin-top: 30px;
+}
+
+
+.bloque-pregunta {
+
+    background: #f8fafc;
+
+    border: 1px solid #dce4ec;
+
+    padding: 20px;
+
+    border-radius: 11px;
+
+    margin-bottom: 18px;
+}
+
+
+.bloque-pregunta h3 {
+
+    margin-top: 0;
+
+    color: #25364a;
+}
+
+
+.opciones-descriptivas {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.opcion-descriptiva {
+
+    padding: 12px 18px;
+
+    border: 2px solid #d8e0e8;
+
+    background: white;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    transition: 0.2s;
+}
+
+
+.opcion-descriptiva:hover {
+
+    border-color: #0969ff;
+
+    background: #f2f7ff;
+}
+
+
+.opcion-descriptiva.seleccionada {
+
+    border-color: #0969ff;
+
+    background: #dbeafe;
+}
+
+
+.descripcion-correcta {
+
+    background: #d1e7dd !important;
+
+    border-color: #198754 !important;
+
+    color: #0f5132;
+
+    font-weight: bold;
+}
+
+
+.descripcion-incorrecta {
+
+    background: #f8d7da !important;
+
+    border-color: #dc3545 !important;
+
+    color: #842029;
+
+    font-weight: bold;
+}
+
+
+
+/* =====================================================
+   DIAGNÓSTICO
+===================================================== */
+
+.diagnostico-section {
+
+    border-top: 2px solid #e5e9ee;
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+}
+
+
+.opciones-diagnostico {
+
+    display: grid;
+
+    gap: 12px;
+}
+
+
+.opcion {
+
+    padding: 17px 20px;
+
+    text-align: left;
+
+    background: white;
+
+    border: 2px solid #dce2e8;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: 0.2s;
+}
+
+
+.opcion:hover {
+
+    background: #f2f7ff;
+
+    border-color: #0969ff;
+}
+
+
+.opcion.correcta {
+
+    background: #d1e7dd;
+
+    border-color: #198754;
+
+    color: #0f5132;
+}
+
+
+.opcion.incorrecta {
+
+    background: #f8d7da;
+
+    border-color: #dc3545;
+
+    color: #842029;
+}
+
+
+
+/* =====================================================
+   EXPLICACIÓN
+===================================================== */
+
+.oculto {
+
+    display: none !important;
+}
+
+
+.explicacion {
+
+    margin-top: 35px;
+
+    padding-top: 30px;
+
+    border-top: 2px solid #e3e8ed;
+}
+
+
+.mensaje-correcto {
+
+    padding: 17px;
+
+    background: #d1e7dd;
+
+    color: #0f5132;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+
+    font-size: 20px;
+}
+
+
+.mensaje-incorrecto {
+
+    padding: 17px;
+
+    background: #f8d7da;
+
+    color: #842029;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+
+    font-size: 20px;
+}
+
+
+.titulo-diagnostico {
+
+    color: #0969ff;
+
+    font-size: 31px;
+}
+
+
+.grid-info {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+
+.info-card {
+
+    padding: 20px;
+
+    background: #f7f9fc;
+
+    border: 1px solid #e0e6ec;
+
+    border-radius: 10px;
+}
+
+
+.info-card h3 {
+
+    margin-top: 0;
+
+    color: #0969ff;
+}
+
+
+.info-card p {
+
+    line-height: 1.65;
+}
+
+
+.perla {
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    background: #fff3cd;
+
+    border-left: 6px solid #ffc107;
+
+    border-radius: 9px;
+}
+
+
+#btn-siguiente {
+
+    display: block;
+
+    margin: 30px auto 0;
+
+    padding: 16px 35px;
+
+    border: none;
+
+    background: #0969ff;
+
+    color: white;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+#btn-siguiente:hover {
+
+    background: #0759d8;
+}
+
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.resultado-final {
+
+    text-align: center;
+
+    padding: 70px 20px;
+}
+
+
+.porcentaje {
+
+    margin: 25px;
+
+    font-size: 80px;
+
+    font-weight: bold;
+
+    color: #0969ff;
+}
+
+
+.btn-final {
+
+    padding: 15px 30px;
+
+    border: none;
+
+    background: #0969ff;
+
+    color: white;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+
+button:disabled {
+
+    cursor: default;
+}
+
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    text-align: center;
+
+    color: #64748b;
+
+    padding: 25px;
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width: 850px) {
+
+    .caso-grid,
+    .grid-info {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .cabecera {
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .imagen-box {
+
+        height: 380px;
+    }
+}
