@@ -34,17 +34,13 @@
             letter-spacing:.8px;
             margin-bottom:5px;
         }
-        .indice-temas h3{
-            margin:0;
-            color:#111827;
-            font-size:22px;
-        }
+        .indice-temas h3{margin:0;color:#111827;font-size:22px}
         .indice-temas-cabecera p{
             margin:0;
             color:#667085;
             font-size:12px;
             line-height:1.5;
-            max-width:470px;
+            max-width:500px;
         }
         .indice-completo{
             width:100%;
@@ -71,36 +67,24 @@
         .temas-directos{
             display:grid;
             grid-template-columns:repeat(2,minmax(0,1fr));
-            gap:9px;
+            gap:10px;
         }
         .tema-directo{
             min-width:0;
             display:grid;
-            grid-template-columns:42px minmax(0,1fr) auto;
-            align-items:center;
+            grid-template-columns:42px minmax(0,1fr);
             gap:10px;
-            padding:11px 12px;
+            padding:12px;
             border:1px solid #e2e8f0;
-            border-radius:12px;
+            border-radius:13px;
             background:#fff;
-            text-align:left;
-            cursor:pointer;
             transition:.15s ease;
         }
-        .tema-directo:hover:not(:disabled){
-            border-color:#9db7ff;
-            background:#f8faff;
-            transform:translateY(-1px);
-        }
+        .tema-directo:hover{border-color:#c8d6ff;background:#fbfcff}
         .tema-directo.activo{
             border-color:#2458ff;
             background:#eef3ff;
             box-shadow:0 0 0 3px rgba(36,88,255,.08);
-        }
-        .tema-directo:disabled{
-            cursor:not-allowed;
-            opacity:.48;
-            background:#f8fafc;
         }
         .tema-directo-num{
             width:38px;
@@ -113,30 +97,68 @@
             font-size:11px;
             font-weight:950;
         }
-        .tema-directo-texto{min-width:0}
+        .tema-directo-contenido{min-width:0}
+        .tema-directo-texto{
+            width:100%;
+            padding:0;
+            border:0;
+            background:transparent;
+            text-align:left;
+            cursor:pointer;
+        }
+        .tema-directo-texto:disabled{cursor:default}
         .tema-directo-texto strong{
             display:block;
             color:#111827;
             font-size:12px;
             line-height:1.3;
-            white-space:nowrap;
-            overflow:hidden;
-            text-overflow:ellipsis;
         }
         .tema-directo-texto small{
             display:block;
-            margin-top:3px;
+            margin-top:4px;
             color:#667085;
             font-size:9px;
             font-weight:700;
         }
-        .tema-directo-accion{
-            color:#2458ff;
-            font-size:10px;
-            font-weight:900;
-            white-space:nowrap;
+        .tema-recursos{
+            display:flex;
+            flex-wrap:wrap;
+            gap:6px;
+            margin-top:9px;
         }
-        .tema-directo:disabled .tema-directo-accion{color:#98a2b3}
+        .tema-recurso{
+            min-height:30px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:4px;
+            padding:0 9px;
+            border:1px solid #dbe3ef;
+            border-radius:8px;
+            background:#fff;
+            color:#344054;
+            font-size:9px;
+            font-weight:900;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        .tema-recurso.audio.disponible{background:#111827;border-color:#111827;color:#fff}
+        .tema-recurso.pdf.disponible{background:#2458ff;border-color:#2458ff;color:#fff}
+        .tema-recurso.video.disponible{background:#fff2ef;border-color:#ffc9bf;color:#d94325}
+        .tema-recurso:disabled{opacity:.4;cursor:not-allowed;background:#f8fafc;color:#98a2b3}
+        .tema-directo-estado{
+            display:inline-flex;
+            margin-top:7px;
+            padding:4px 7px;
+            border-radius:999px;
+            background:#eefbf4;
+            color:#11734b;
+            font-size:8px;
+            font-weight:950;
+            letter-spacing:.25px;
+        }
+        .tema-directo-estado.parcial{background:#fff7cc;color:#765900}
+        .tema-directo-estado.pendiente{background:#f2f4f7;color:#667085}
         .visor-cabecera h3{margin-bottom:3px}
         #visor-subtitulo{margin:0;color:#667085;font-size:11px}
         @media(max-width:760px){
@@ -144,7 +166,7 @@
             .indice-temas-cabecera{display:block}
             .indice-temas-cabecera p{margin-top:8px}
             .temas-directos{grid-template-columns:1fr}
-            .tema-directo-texto strong{white-space:normal}
+            .tema-recurso{flex:1;min-width:82px}
         }
     </style>
 </head>
@@ -186,10 +208,10 @@
     <section class="indice-temas" aria-labelledby="indice-temas-titulo">
         <div class="indice-temas-cabecera">
             <div>
-                <span class="indice-temas-kicker">ÍNDICE RÁPIDO</span>
-                <h3 id="indice-temas-titulo">Ir directamente al tema</h3>
+                <span class="indice-temas-kicker">ÍNDICE RÁPIDO · MATERIAL POR TEMA</span>
+                <h3 id="indice-temas-titulo">Estudia cada tema desde un solo lugar</h3>
             </div>
-            <p>Selecciona un tema y el lector de abajo abrirá directamente su PDF sin salir de Teoría.</p>
+            <p>En cada tema puedes abrir el PDF en el lector, iniciar su audio sin salir de BADBEAR.MED o abrir directamente su clase en YouTube.</p>
         </div>
 
         <button id="btn-cuaderno-completo" class="indice-completo activo" type="button">
@@ -235,13 +257,13 @@
 
     function limpiarActivo(){
         completo.classList.remove("activo");
-        contenedor.querySelectorAll(".tema-directo").forEach(btn=>btn.classList.remove("activo"));
+        contenedor.querySelectorAll(".tema-directo").forEach(card=>card.classList.remove("activo"));
     }
 
-    function abrirPDF(ruta, nombre, detalle, boton){
+    function abrirPDF(ruta, nombre, detalle, card){
         if(!ruta) return;
         limpiarActivo();
-        if(boton) boton.classList.add("activo");
+        if(card) card.classList.add("activo");
         frame.src = ruta;
         frame.title = `${nombre} · BADBEAR.MED Dermatología`;
         titulo.textContent = nombre;
@@ -250,33 +272,61 @@
         document.querySelector(".visor-pdf")?.scrollIntoView({behavior:"smooth",block:"start"});
     }
 
+    function reproducirTema(id){
+        if(window.self !== window.top){
+            window.parent.postMessage({type:"bb-audio-play-topic",temaId:id},location.origin);
+        }else if(window.BADBEAR_AUDIO_API){
+            window.BADBEAR_AUDIO_API.playTopic(id);
+        }
+    }
+
     completo.addEventListener("click",()=>{
-        abrirPDF(PDF_COMPLETO,"Cuaderno de Dermatología","Documento completo",completo);
+        abrirPDF(PDF_COMPLETO,"Cuaderno de Dermatología","Documento completo",null);
+        completo.classList.add("activo");
     });
 
     contenedor.innerHTML = C.temas.map(t=>{
         const numero = String(t.id).padStart(2,"0");
-        const disponible = !!t.pdf;
-        const texto = disponible ? "ABRIR ↓" : "PENDIENTE";
-        const detalle = disponible ? "PDF individual disponible" : "PDF aún no publicado";
+        const recursos = [t.audio,t.pdf,t.video].filter(Boolean).length;
+        const completoTema = recursos === 3;
+        const claseEstado = completoTema ? "" : recursos > 0 ? "parcial" : "pendiente";
+        const textoEstado = completoTema ? "MATERIAL COMPLETO" : recursos > 0 ? `${recursos}/3 RECURSOS DISPONIBLES` : "EN PREPARACIÓN";
+        const detalle = t.pdf ? "Haz clic en el título o en PDF para abrirlo aquí abajo" : "PDF individual pendiente";
         return `
-            <button class="tema-directo" type="button" data-tema-id="${t.id}" ${disponible ? "" : "disabled"}>
+            <article class="tema-directo" data-tema-id="${t.id}">
                 <span class="tema-directo-num">${numero}</span>
-                <span class="tema-directo-texto">
-                    <strong>${t.titulo}</strong>
-                    <small>${detalle}</small>
-                </span>
-                <span class="tema-directo-accion">${texto}</span>
-            </button>`;
+                <div class="tema-directo-contenido">
+                    <button class="tema-directo-texto" type="button" data-accion="pdf" ${t.pdf ? "" : "disabled"}>
+                        <strong>${t.titulo}</strong>
+                        <small>${detalle}</small>
+                    </button>
+                    <div class="tema-recursos">
+                        <button class="tema-recurso audio ${t.audio ? "disponible" : ""}" type="button" data-accion="audio" ${t.audio ? "" : "disabled"}>🎧 Audio</button>
+                        <button class="tema-recurso pdf ${t.pdf ? "disponible" : ""}" type="button" data-accion="pdf" ${t.pdf ? "" : "disabled"}>📄 PDF</button>
+                        ${t.video
+                            ? `<a class="tema-recurso video disponible" href="${t.video}" target="_blank" rel="noopener noreferrer">▶ Video</a>`
+                            : `<button class="tema-recurso" type="button" disabled>▶ Video</button>`}
+                    </div>
+                    <span class="tema-directo-estado ${claseEstado}">${textoEstado}</span>
+                </div>
+            </article>`;
     }).join("");
 
-    contenedor.querySelectorAll(".tema-directo:not(:disabled)").forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            const id = Number(btn.dataset.temaId);
-            const tema = C.temas.find(t=>t.id===id);
-            if(!tema || !tema.pdf) return;
-            abrirPDF(tema.pdf,`Tema ${String(tema.id).padStart(2,"0")} · ${tema.titulo}`,"PDF individual del tema",btn);
+    contenedor.querySelectorAll(".tema-directo").forEach(card=>{
+        const id = Number(card.dataset.temaId);
+        const tema = C.temas.find(t=>t.id===id);
+        if(!tema) return;
+
+        card.querySelectorAll('[data-accion="pdf"]:not(:disabled)').forEach(btn=>{
+            btn.addEventListener("click",()=>{
+                abrirPDF(tema.pdf,`Tema ${String(tema.id).padStart(2,"0")} · ${tema.titulo}`,"PDF individual del tema",card);
+            });
         });
+
+        const audioBtn = card.querySelector('[data-accion="audio"]:not(:disabled)');
+        if(audioBtn){
+            audioBtn.addEventListener("click",()=>reproducirTema(tema.id));
+        }
     });
 })();
 </script>
