@@ -8,10 +8,10 @@
 
   const ahora = () => Date.now();
   const vigente = () => Number(localStorage.getItem(BB_AUTH_KEY) || 0) > ahora();
-  const esInicio = () => {
-    const nombre = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-    return nombre === "" || nombre === "index.html";
-  };
+  const nombrePagina = () => (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const esInicio = () => nombrePagina() === "" || nombrePagina() === "index.html";
+  const esShell = () => nombrePagina() === "estudio.html";
+  const estaEmbebida = () => window.self !== window.top;
 
   const estilo = document.createElement("style");
   estilo.textContent = `
@@ -42,8 +42,16 @@
     return nombre + location.search + location.hash;
   }
 
+  function destinoShell(pagina) {
+    return `estudio.html?page=${encodeURIComponent(pagina || "index.html")}`;
+  }
+
   function irAlAcceso() {
-    const next = encodeURIComponent(destinoActual());
+    let objetivo = destinoActual();
+    if (esShell()) {
+      objetivo = new URLSearchParams(location.search).get("page") || "index.html";
+    }
+    const next = encodeURIComponent(objetivo);
     location.replace(`index.html?bbnext=${next}`);
   }
 
@@ -55,7 +63,7 @@
     if (!document.querySelector('link[data-bb-mobile="1"]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "mobile-fixes.css?v=2";
+      link.href = "mobile-fixes.css?v=3";
       link.dataset.bbMobile = "1";
       document.head.appendChild(link);
     }
@@ -161,7 +169,8 @@
           localStorage.setItem(BB_AUTH_KEY, String(ahora() + BB_AUTH_HOURS * 60 * 60 * 1000));
           const params = new URLSearchParams(location.search);
           const next = params.get("bbnext");
-          location.replace(next && !/^https?:/i.test(next) && !next.startsWith("//") ? next : "index.html");
+          const pagina = next && !/^https?:/i.test(next) && !next.startsWith("//") ? next : "index.html";
+          location.replace(destinoShell(pagina));
           return;
         }
         error.textContent = "Clave incorrecta. Verifica e inténtalo nuevamente.";
@@ -176,6 +185,16 @@
   }
 
   if (vigente()) {
+    if (estaEmbebida()) {
+      quitarBloqueoVisual();
+      return;
+    }
+
+    if (!esShell()) {
+      location.replace(destinoShell(destinoActual()));
+      return;
+    }
+
     cargarMejorasMoviles();
     quitarBloqueoVisual();
     const iniciarUI = () => {
