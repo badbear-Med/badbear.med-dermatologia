@@ -1,0 +1,119 @@
+/* BADBEAR.MED · navegación móvil compacta */
+@media (max-width: 760px){
+  .bb-header,
+  .cabecera.bb-header{
+    position:sticky;
+    top:0;
+    z-index:9990;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;
+    gap:10px!important;
+    padding:10px 14px!important;
+    min-height:auto!important;
+    background:rgba(255,255,255,.98)!important;
+  }
+
+  .bb-header .marca{
+    min-width:0;
+    gap:9px!important;
+  }
+
+  .bb-header .logo-badbear{
+    width:44px!important;
+    height:44px!important;
+    flex:0 0 44px!important;
+  }
+
+  .bb-header .marca-texto h1{
+    font-size:22px!important;
+    line-height:1!important;
+    white-space:nowrap;
+  }
+
+  .bb-header .marca-texto p{
+    margin-top:4px!important;
+    font-size:11px!important;
+  }
+
+  .bb-mobile-menu-btn{
+    display:inline-flex!important;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    padding:10px 12px;
+    background:#111827;
+    color:#fff;
+    font:800 12px/1 Arial,Helvetica,sans-serif;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(17,24,39,.12);
+  }
+
+  .bb-mobile-menu-btn[aria-expanded="true"]{
+    background:#2458ff;
+  }
+
+  .bb-header .nav-principal{
+    grid-column:1/-1;
+    display:none!important;
+    width:100%;
+    margin:0!important;
+    padding:10px 0 2px!important;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px!important;
+  }
+
+  .bb-header.bb-menu-abierto .nav-principal{
+    display:grid!important;
+  }
+
+  .bb-header .nav-item{
+    display:flex!important;
+    align-items:center;
+    justify-content:flex-start;
+    min-height:42px;
+    padding:10px 12px!important;
+    margin:0!important;
+    border:1px solid #e4e9f0;
+    border-radius:11px!important;
+    background:#fff;
+    color:#374151!important;
+    font-size:12px!important;
+    font-weight:800!important;
+    text-decoration:none;
+  }
+
+  .bb-header .nav-item.nav-activo{
+    background:#fff0eb!important;
+    border-color:#ffd1c5!important;
+    color:#111827!important;
+  }
+
+  .bb-header .nav-item.nav-activo::after{
+    display:none!important;
+  }
+
+  .inicio-badbear,
+  .teoria-badbear,
+  .audio-main,
+  .exam-main,
+  .repaso-main,
+  .progreso-badbear{
+    margin-top:20px!important;
+  }
+
+  .bb-auth-logout{
+    right:10px!important;
+    bottom:10px!important;
+    padding:9px 11px!important;
+    font-size:11px!important;
+  }
+}
+
+@media (max-width: 390px){
+  .bb-header .marca-texto h1{font-size:19px!important}
+  .bb-mobile-menu-btn{padding:9px 10px}
+  .bb-header .nav-principal{grid-template-columns:1fr}
+}
