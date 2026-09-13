@@ -1,6 +1,7 @@
 /* BADBEAR.MED · navegación y contenedores móviles */
 html,body{max-width:100%;overflow-x:hidden}
 img,iframe,video,canvas,svg{max-width:100%}
+.bb-mobile-menu-btn{display:none}
 
 @media (max-width:900px){
   .bb-header,
@@ -60,9 +61,8 @@ img,iframe,video,canvas,svg{max-width:100%}
     display:flex!important;
     align-items:center!important;
     justify-content:flex-start!important;
-    width:100%!important;
-    min-width:0!important;
     min-height:42px!important;
+    min-width:0!important;
     padding:10px 12px!important;
     margin:0!important;
     border:1px solid #e4e9f0!important;
@@ -71,7 +71,6 @@ img,iframe,video,canvas,svg{max-width:100%}
     color:#374151!important;
     font-size:12px!important;
     font-weight:800!important;
-    line-height:1.25!important;
     text-decoration:none!important;
     white-space:normal!important;
   }
@@ -81,114 +80,79 @@ img,iframe,video,canvas,svg{max-width:100%}
     border-color:#ffd1c5!important;
     color:#111827!important;
   }
+
   .bb-header .nav-item.nav-activo::after{display:none!important}
 
-  /* Exámenes: ningún control puede salir de la tarjeta */
-  .exam-main{
+  .inicio-badbear,
+  .teoria-badbear,
+  .audio-main,
+  .exam-main,
+  .atlas-main,
+  .repaso-main,
+  .progreso-badbear,
+  .simulador-main,
+  .recon-main,
+  .practico-main,
+  .plan-main,
+  .historial-main,
+  .srs-main{
     width:100%!important;
     max-width:100%!important;
-    margin:18px auto 45px!important;
-    padding:0 12px!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    padding-left:12px!important;
+    padding-right:12px!important;
     box-sizing:border-box!important;
-    overflow:visible!important;
   }
 
-  .exam-hero,
-  .exam-card,
-  .exam-stats{
-    width:100%!important;
+  .exam-hero,.exam-card,.exam-stats,.exam-stat,
+  .atlas-hero,.atlas-toolbar,.atlas-summary,.atlas-grid,.atlas-card,
+  .repaso-panel,.repaso-hero,.cuaderno-card,.visor-pdf{
     max-width:100%!important;
     min-width:0!important;
     box-sizing:border-box!important;
   }
-
-  .exam-hero{padding:22px 16px!important}
-  .exam-hero-top{grid-template-columns:minmax(0,1fr)!important;gap:16px!important}
-  .exam-hero-info,.exam-youtube,.exam-youtube-contenido{min-width:0!important;max-width:100%!important}
-  .exam-youtube{width:100%!important;padding:14px!important;box-sizing:border-box!important}
-  .exam-youtube-icono{flex:0 0 44px!important;width:44px!important;height:44px!important}
-  .exam-descripcion{font-size:15px!important;line-height:1.6!important}
 
   .exam-tools{
     display:grid!important;
     grid-template-columns:minmax(0,1fr)!important;
     width:100%!important;
     max-width:100%!important;
-    min-width:0!important;
-    gap:9px!important;
-    overflow:visible!important;
+    gap:8px!important;
   }
-
-  .exam-tools select,
-  .exam-tools button,
-  .exam-tools a,
-  .exam-btn-simulador,
-  .exam-btn-repaso{
-    position:static!important;
-    float:none!important;
+  .exam-tools>*{
     width:100%!important;
     max-width:100%!important;
     min-width:0!important;
     box-sizing:border-box!important;
+  }
+  .exam-btn-simulador{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
     min-height:44px!important;
-    margin:0!important;
-    padding:10px 12px!important;
-    white-space:normal!important;
-    text-align:center!important;
+    padding:0 14px!important;
+    border:1px solid #111827!important;
+    border-radius:10px!important;
+    background:#111827!important;
+    color:#fff!important;
+    text-decoration:none!important;
+    font-weight:900!important;
   }
+  .exam-hero-top{grid-template-columns:minmax(0,1fr)!important;gap:18px!important}
+  .exam-youtube{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+  .exam-pregunta,.exam-opcion,.exam-argumento p{overflow-wrap:anywhere!important}
 
-  .exam-tools select{display:block!important;text-overflow:ellipsis!important}
-  .exam-tools button,.exam-tools a{display:flex!important;align-items:center!important;justify-content:center!important}
-
-  .exam-stats{grid-template-columns:1fr!important;gap:9px!important}
-  .exam-stat{padding:15px 16px!important}
-  .exam-body,.exam-top,.exam-nav{padding-left:16px!important;padding-right:16px!important}
-  .exam-pregunta{font-size:18px!important;overflow-wrap:anywhere!important}
-  .exam-opcion{min-width:0!important;overflow-wrap:anywhere!important}
-  .exam-nav{flex-direction:column-reverse!important}
-  .exam-nav button{width:100%!important}
-
-  /* Contenedores principales de los otros módulos */
-  .inicio-badbear,
-  .teoria-badbear,
-  .audio-main,
-  .repaso-main,
-  .progreso-badbear,
-  .simulador-main,
-  .atlas-main,
-  .reconocimiento-main,
-  .practico-main,
-  .plan-main,
-  .historial-main,
-  .repeticion-main{
-    width:100%!important;
-    max-width:100%!important;
-    box-sizing:border-box!important;
-    padding-left:12px!important;
-    padding-right:12px!important;
-    margin-top:20px!important;
+  .bb-auth-logout{
+    right:10px!important;
+    bottom:10px!important;
+    padding:9px 11px!important;
+    font-size:11px!important;
   }
-
-  .hero-badbear,
-  .tarjeta-modulo,
-  .cuaderno-card,
-  .visor-pdf,
-  .playlist-box,
-  .audio-player,
-  .repaso-hero,
-  .repaso-panel,
-  .progreso-audio-card{
-    max-width:100%!important;
-    min-width:0!important;
-    box-sizing:border-box!important;
-  }
-
-  .bb-auth-logout{right:10px!important;bottom:10px!important;padding:9px 11px!important;font-size:11px!important}
 }
 
-@media (max-width:430px){
+@media (max-width:390px){
   .bb-header .marca-texto h1{font-size:19px!important}
   .bb-mobile-menu-btn{padding:9px 10px!important}
   .bb-header .nav-principal{grid-template-columns:1fr!important}
-  .exam-hero h2{font-size:27px!important}
 }
