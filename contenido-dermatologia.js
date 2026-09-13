@@ -37,10 +37,10 @@
       id:3,
       titulo:"Enfermedades inflamatorias de la piel",
       audio:"audios/03-enfermedades-inflamatorias.mp3",
-      pdf:"pdfs/temas/03-enfermedades-inflamatorias.pdf",
+      pdf:null,
       video:"https://youtu.be/FKfTnGgf5lk",
       teoria:"teoria.html",
-      estado:"disponible"
+      estado:"parcial"
     },
     {
       id:4,
@@ -78,15 +78,15 @@
       teoria:"teoria.html",
       estado:"parcial"
     },
-    { id:8,  titulo:"Tema 08 · pendiente de definir", audio:null, pdf:"pdfs/temas/08-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:9,  titulo:"Tema 09 · pendiente de definir", audio:null, pdf:"pdfs/temas/09-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:10, titulo:"Tema 10 · pendiente de definir", audio:null, pdf:"pdfs/temas/10-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:11, titulo:"Tema 11 · pendiente de definir", audio:null, pdf:"pdfs/temas/11-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:12, titulo:"Tema 12 · pendiente de definir", audio:null, pdf:"pdfs/temas/12-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:13, titulo:"Tema 13 · pendiente de definir", audio:null, pdf:"pdfs/temas/13-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:14, titulo:"Tema 14 · pendiente de definir", audio:null, pdf:"pdfs/temas/14-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:15, titulo:"Tema 15 · pendiente de definir", audio:null, pdf:"pdfs/temas/15-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" },
-    { id:16, titulo:"Tema 16 · pendiente de definir", audio:null, pdf:"pdfs/temas/16-tema.pdf", video:null, teoria:"teoria.html", estado:"parcial" }
+    { id:8,  titulo:"Tema 08 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:9,  titulo:"Tema 09 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:10, titulo:"Tema 10 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:11, titulo:"Tema 11 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:12, titulo:"Tema 12 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:13, titulo:"Tema 13 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:14, titulo:"Tema 14 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:15, titulo:"Tema 15 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:16, titulo:"Tema 16 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" }
   ];
 
   window.BADBEAR_DERMATOLOGIA = Object.freeze({
