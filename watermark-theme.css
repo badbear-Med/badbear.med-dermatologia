@@ -1,0 +1,170 @@
+/* =========================================================
+   BADBEAR.MED · FONDO INSTITUCIONAL / MARCA DE AGUA
+   Inspirado en la presentación visual de Cirugía Pediátrica.
+   Mantiene el contenido limpio y añade el logo de forma sutil.
+========================================================= */
+
+html,
+body{
+  background:#f5f7fb!important;
+}
+
+body{
+  background-image:
+    radial-gradient(circle at 12% 4%,rgba(36,88,255,.045),transparent 31%),
+    radial-gradient(circle at 88% 8%,rgba(255,90,54,.035),transparent 28%),
+    linear-gradient(180deg,#f8fbff 0%,#f5f7fb 52%,#f4f6fa 100%)!important;
+  background-attachment:fixed!important;
+}
+
+.bb-shell-stage{
+  background:
+    linear-gradient(180deg,#f8fbff 0%,#f5f7fb 55%,#f4f6fa 100%)!important;
+}
+
+/* Paneles principales: marca de agua centrada, discreta y no interactiva. */
+.hero-badbear,
+.exam-hero,
+.exam-card,
+.repaso-hero,
+.repaso-panel,
+.sim-hero,
+.sim-panel,
+.atlas-hero,
+.recon-hero,
+.recon-panel,
+.practico-hero,
+.practico-panel,
+.plan-hero,
+.plan-panel,
+.srs-hero,
+.srs-panel,
+.historial-hero,
+.historial-panel,
+.cabecera-teoria,
+.indice-temas,
+.visor-pdf,
+.media-hero,
+.panel-rendimiento,
+.progreso-audio-card,
+.resumen-unidad,
+.cabecera-progreso{
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate;
+}
+
+.hero-badbear::after,
+.exam-hero::after,
+.exam-card::after,
+.repaso-hero::after,
+.repaso-panel::after,
+.sim-hero::after,
+.sim-panel::after,
+.atlas-hero::after,
+.recon-hero::after,
+.recon-panel::after,
+.practico-hero::after,
+.practico-panel::after,
+.plan-hero::after,
+.plan-panel::after,
+.srs-hero::after,
+.srs-panel::after,
+.historial-hero::after,
+.historial-panel::after,
+.cabecera-teoria::after,
+.indice-temas::after,
+.visor-pdf::after,
+.media-hero::after,
+.panel-rendimiento::after,
+.progreso-audio-card::after,
+.resumen-unidad::after,
+.cabecera-progreso::after{
+  content:"";
+  position:absolute;
+  width:380px;
+  height:380px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background-image:url("badbear_logo.png");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  opacity:.062;
+  pointer-events:none;
+  z-index:0;
+  filter:saturate(.88) contrast(.96);
+}
+
+.hero-badbear > *,
+.exam-hero > *,
+.exam-card > *,
+.repaso-hero > *,
+.repaso-panel > *,
+.sim-hero > *,
+.sim-panel > *,
+.atlas-hero > *,
+.recon-hero > *,
+.recon-panel > *,
+.practico-hero > *,
+.practico-panel > *,
+.plan-hero > *,
+.plan-panel > *,
+.srs-hero > *,
+.srs-panel > *,
+.historial-hero > *,
+.historial-panel > *,
+.cabecera-teoria > *,
+.indice-temas > *,
+.visor-pdf > *,
+.media-hero > *,
+.panel-rendimiento > *,
+.progreso-audio-card > *,
+.resumen-unidad > *,
+.cabecera-progreso > *{
+  position:relative;
+  z-index:1;
+}
+
+/* La cabecera queda blanca y nítida, como en la otra plataforma. */
+.bb-header,
+.cabecera.bb-header{
+  background:rgba(255,255,255,.97)!important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 4px 18px rgba(15,23,42,.035);
+}
+
+@media(max-width:760px){
+  .hero-badbear::after,
+  .exam-hero::after,
+  .exam-card::after,
+  .repaso-hero::after,
+  .repaso-panel::after,
+  .sim-hero::after,
+  .sim-panel::after,
+  .atlas-hero::after,
+  .recon-hero::after,
+  .recon-panel::after,
+  .practico-hero::after,
+  .practico-panel::after,
+  .plan-hero::after,
+  .plan-panel::after,
+  .srs-hero::after,
+  .srs-panel::after,
+  .historial-hero::after,
+  .historial-panel::after,
+  .cabecera-teoria::after,
+  .indice-temas::after,
+  .visor-pdf::after,
+  .media-hero::after,
+  .panel-rendimiento::after,
+  .progreso-audio-card::after,
+  .resumen-unidad::after,
+  .cabecera-progreso::after{
+    width:260px;
+    height:260px;
+    opacity:.052;
+  }
+}
