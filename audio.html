@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>BADBEAR.MED | Audio · Dermatología</title>
+
+  <meta
+    name="description"
+    content="Playlist de audio de Dermatología desarrollada para el proyecto BADBEAR.MED del grupo WAJOMEA."
+  >
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+
+    :root{
+      --audio-blue:#0969ff;
+      --audio-dark:#0b1f33;
+      --audio-muted:#64748b;
+      --audio-line:#dfe7f0;
+      --audio-bg:#f4f7fb;
+    }
+
+    body{
+      background:var(--audio-bg);
+    }
+
+    .audio-main{
+      max-width:1150px;
+      margin:40px auto 70px;
+      padding:0 24px;
+    }
+
+    .audio-hero{
+      margin-bottom:25px;
+    }
+
+    .audio-etiqueta{
+      display:inline-flex;
+      padding:7px 12px;
+
+      border-radius:999px;
+
+      background:#edf4ff;
+      color:var(--audio-blue);
+
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.7px;
+    }
+
+    .audio-hero h2{
+      margin:15px 0 8px;
+
+      font-size:40px;
+      color:var(--audio-dark);
+    }
+
+    .audio-hero p{
+      max-width:760px;
+
+      margin:0;
+
+      color:var(--audio-muted);
+
+      font-size:17px;
+      line-height:1.7;
+    }
+
+
+    /* PLAYER */
+
+    .audio-player{
+      display:grid;
+      grid-template-columns:260px 1fr;
+
+      background:#0d1724;
+
+      border-radius:24px;
+      overflow:hidden;
+
+      box-shadow:
+        0 20px 45px rgba(11,31,51,.18);
+
+      margin-bottom:28px;
+    }
+
+    .audio-cover{
+      min-height:260px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background:
+        linear-gradient(
+          145deg,
+          #0969ff,
+          #0b1f33
+        );
+    }
+
+    .audio-cover img{
+      width:150px;
+      height:150px;
+
+      object-fit:contain;
+
+      border-radius:50%;
+
+      background:white;
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
+    }
+
+    .audio-control{
+      padding:30px 35px;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .audio-mini{
+      color:#55a1ff;
+
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:1px;
+
+      margin-bottom:8px;
+    }
+
+    #audio-titulo{
+      color:white;
+
+      font-size:26px;
+
+      margin:0 0 6px;
+    }
+
+    #audio-subtitulo{
+      color:#aebdce;
+
+      margin:0 0 28px;
+
+      font-size:14px;
+    }
+
+
+    /* BARRA */
+
+    .audio-tiempo{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+
+      align-items:center;
+      gap:12px;
+
+      margin-bottom:24px;
+
+      color:#9eacbb;
+
+      font-size:11px;
+    }
+
+    #audio-progreso{
+      width:100%;
+
+      accent-color:#2d82ff;
+
+      cursor:pointer;
+    }
+
+
+    /* BOTONES */
+
+    .audio-botones{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      gap:16px;
+    }
+
+    .audio-btn{
+      width:44px;
+      height:44px;
+
+      display:grid;
+      place-items:center;
+
+      border:none;
+      border-radius:50%;
+
+      background:#17283b;
+      color:white;
+
+      cursor:pointer;
+
+      font-size:17px;
+    }
+
+    .audio-btn:hover{
+      background:#223a55;
+    }
+
+    .audio-play{
+      width:58px;
+      height:58px;
+
+      background:white;
+      color:#0b1f33;
+
+      font-size:22px;
+    }
+
+    .audio-play:hover{
+      background:#eaf2ff;
+    }
+
+
+    /* PLAYLIST */
+
+    .playlist-box{
+      background:white;
+
+      border:1px solid var(--audio-line);
+      border-radius:22px;
+
+      padding:28px;
+
+      box-shadow:
+        0 12px 35px rgba(11,31,51,.06);
+    }
+
+    .playlist-cabecera{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+
+      margin-bottom:20px;
+    }
+
+    .playlist-cabecera span{
+      display:block;
+
+      color:var(--audio-blue);
+
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.8px;
+
+      margin-bottom:5px;
+    }
+
+    .playlist-cabecera h3{
+      margin:0;
+
+      font-size:25px;
+      color:var(--audio-dark);
+    }
+
+    .playlist-lista{
+      display:grid;
+      gap:8px;
+    }
+
+    .audio-item{
+      width:100%;
+
+      display:grid;
+      grid-template-columns:50px 1fr auto;
+
+      align-items:center;
+      gap:12px;
+
+      padding:14px 15px;
+
+      border:1px solid transparent;
+      border-radius:12px;
+
+      background:white;
+
+      text-align:left;
+
+      cursor:pointer;
+
+      transition:.15s ease;
+    }
+
+    .audio-item:hover{
+      background:#f6f9fd;
+    }
+
+    .audio-item.activo{
+      background:#edf4ff;
+      border-color:#9cc3ff;
+    }
+
+    .audio-numero{
+      font-size:12px;
+      font-weight:900;
+
+      color:#7d8c9e;
+    }
+
+    .audio-item-titulo{
+      display:block;
+
+      color:var(--audio-dark);
+
+      font-size:15px;
+      font-weight:800;
+    }
+
+    .audio-item-sub{
+      display:block;
+
+      margin-top:3px;
+
+      color:#7a899a;
+
+      font-size:11px;
+    }
+
+    .audio-item-play{
+      color:var(--audio-blue);
+
+      font-size:18px;
+    }
+
+
+    .audio-creditos{
+      margin-top:20px;
+
+      text-align:center;
+
+      color:#7b8998;
+
+      font-size:12px;
+    }
+
+/* =========================================================
+   PROGRESO DE AUDIOS
+========================================================= */
+
+.audio-resumen{
+  padding:9px 14px;
+
+  border-radius:999px;
+
+  background:#edf4ff;
+  color:#0969ff;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.audio-item.completado{
+  background:#f1fbf6;
+  border-color:#b6e6ce;
+}
+
+.audio-item.completado .audio-numero{
+  color:#0f9f63;
+}
+
+.audio-item.completado .audio-item-play{
+  width:28px;
+  height:28px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:#0f9f63;
+  color:white;
+
+  font-size:14px;
+  font-weight:900;
+}
+
+    @media(max-width:800px){
+
+      .audio-player{
+        grid-template-columns:1fr;
+      }
+
+      .audio-cover{
+        min-height:210px;
+      }
+
+      .audio-control{
+        padding:25px 20px;
+      }
+
+      .audio-hero h2{
+        font-size:32px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header class="cabecera bb-header">
+
+  <a
+    class="marca"
+    href="index.html"
+    aria-label="Inicio BADBEAR.MED"
+  >
+
+    <img
+      class="logo-badbear"
+      src="badbear_logo.png"
+      alt="Logo BADBEAR.MED"
+    >
+
+    <div class="marca-texto">
+
+      <h1>
+        BADBEAR<span>.MED</span>
+      </h1>
+
+      <p>
+        Dermatología
+      </p>
+
+    </div>
+
+  </a>
+
+
+  <nav
+    class="nav-principal"
+    aria-label="Navegación principal"
+  >
+
+    <a
+      href="index.html"
+      class="nav-item"
+    >
+      Inicio
+    </a>
+
+    <a
+      href="banco.html"
+      class="nav-item"
+    >
+      Banco
+    </a>
+
+    <a
+      href="examenes.html"
+      class="nav-item"
+    >
+      Exámenes pasados
+    </a>
+
+    <a
+      href="teoria.html"
+      class="nav-item"
+    >
+      Teoría
+    </a>
+
+    <a
+      href="audio.html"
+      class="nav-item nav-activo"
+    >
+      Audio
+    </a>
+
+    <a
+      href="progreso.html"
+      class="nav-item"
+    >
+      Progreso
+    </a>
+
+  </nav>
+
+</header>
+
+
+
+<main class="audio-main">
+
+
+  <section class="audio-hero">
+
+    <span class="audio-etiqueta">
+      BADBEAR.MED AUDIO
+    </span>
+
+    <h2>
+      Dermatología para escuchar
+    </h2>
+
+    <p>
+      Repasa los temas desarrollados durante la unidad de Dermatología
+      mientras estudias, viajas o realizas otras actividades.
+      Proyecto BADBEAR.MED del grupo WAJOMEA.
+    </p>
+
+  </section>
+
+
+
+  <section class="audio-player">
+
+
+    <div class="audio-cover">
+
+      <img
+        src="badbear_logo.png"
+        alt="BADBEAR.MED Audio"
+      >
+
+    </div>
+
+
+    <div class="audio-control">
+
+      <div class="audio-mini">
+        REPRODUCIENDO AHORA
+      </div>
+
+
+      <h3 id="audio-titulo">
+        Anatomía y fisiología de la piel
+      </h3>
+
+
+      <p id="audio-subtitulo">
+        BADBEAR.MED · Dermatología
+      </p>
+
+
+
+      <div class="audio-tiempo">
+
+        <span id="tiempo-actual">
+          0:00
+        </span>
+
+        <input
+          id="audio-progreso"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+        >
+
+        <span id="tiempo-total">
+          0:00
+        </span>
+
+      </div>
+
+
+
+      <div class="audio-botones">
+
+        <button
+          id="audio-anterior"
+          class="audio-btn"
+          type="button"
+          aria-label="Anterior"
+        >
+          ◀
+        </button>
+
+
+        <button
+          id="audio-play"
+          class="audio-btn audio-play"
+          type="button"
+          aria-label="Reproducir"
+        >
+          ▶
+        </button>
+
+
+        <button
+          id="audio-siguiente"
+          class="audio-btn"
+          type="button"
+          aria-label="Siguiente"
+        >
+          ▶
+        </button>
+
+      </div>
+
+<div class="audio-opciones">
+
+  <div class="audio-volumen">
+
+    <span>🔊</span>
+
+    <input
+      id="audio-volumen"
+      type="range"
+      min="0"
+      max="1"
+      step="0.05"
+      value="1"
+      aria-label="Volumen"
+    >
+
+  </div>
+
+
+  <div class="audio-velocidad">
+
+    <span>Velocidad</span>
+
+    <select
+      id="audio-velocidad"
+      aria-label="Velocidad de reproducción"
+    >
+      <option value="0.75">0.75x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+      <option value="1.75">1.75x</option>
+      <option value="2">2x</option>
+    </select>
+
+  </div>
+
+</div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="playlist-box">
+
+
+<div class="playlist-cabecera">
+
+  <div>
+
+    <span>
+      PLAYLIST · DERMATOLOGÍA
+    </span>
+
+    <h3>
+      Audios de la unidad
+    </h3>
+
+  </div>
+
+  <div
+    id="audio-resumen"
+    class="audio-resumen"
+  >
+    0 de 6 escuchados
+  </div>
+
+</div>
+
+
+    <div
+      id="playlist"
+      class="playlist-lista"
+    ></div>
+
+
+  </section>
+
+
+
+  <p class="audio-creditos">
+    BADBEAR.MED · Dermatología · Proyecto BADBEAR.MED del grupo WAJOMEA
+  </p>
+
+
+</main>
+
+
+
+<audio id="reproductor"></audio>
+
+
+
+<script>
+
+const canciones = [
+
+  {
+    titulo:
+      "Anatomía y fisiología de la piel",
+
+    archivo:
+      "audios/01-anatomia-piel.mp3"
+  },
+
+  {
+    titulo:
+      "Lesiones elementales",
+
+    archivo:
+      "audios/02-lesiones-elementales.mp3"
+  },
+
+  {
+    titulo:
+      "Enfermedades inflamatorias de la piel",
+
+    archivo:
+      "audios/03-enfermedades-inflamatorias.mp3"
+  },
+
+  {
+    titulo:
+      "Enfermedades parasitarias de la piel",
+
+    archivo:
+      "audios/04-enfermedades-parasitarias.mp3"
+  },
+
+  {
+    titulo:
+      "Enfermedades bacterianas de la piel",
+
+    archivo:
+      "audios/05-enfermedades-bacterianas.mp3"
+  },
+
+  {
+    titulo:
+      "Enfermedades virales de la piel",
+
+    archivo:
+      "audios/06-enfermedades-virales.mp3"
+  }
+
+];
+
+
+const reproductor =
+  document.getElementById("reproductor");
+
+
+const titulo =
+  document.getElementById("audio-titulo");
+
+
+const play =
+  document.getElementById("audio-play");
+
+
+const anterior =
+  document.getElementById("audio-anterior");
+
+
+const siguiente =
+  document.getElementById("audio-siguiente");
+
+
+const progreso =
+  document.getElementById("audio-progreso");
+
+
+const tiempoActual =
+  document.getElementById("tiempo-actual");
+
+
+const tiempoTotal =
+  document.getElementById("tiempo-total");
+
+
+const playlist =
+  document.getElementById("playlist");
+
+  const controlVolumen =
+  document.getElementById("audio-volumen");
+
+
+const controlVelocidad =
+  document.getElementById("audio-velocidad");
+
+
+let indiceActual = 0;
+
+const CLAVE_ESTADO_AUDIO =
+  "badbear_derma_audio_estado";
+
+
+function guardarEstadoAudio(){
+
+  const estado = {
+
+    indice:
+      indiceActual,
+
+    tiempo:
+      reproductor.currentTime || 0,
+
+    volumen:
+      reproductor.volume,
+
+    velocidad:
+      reproductor.playbackRate
+
+  };
+
+  localStorage.setItem(
+    CLAVE_ESTADO_AUDIO,
+    JSON.stringify(estado)
+  );
+
+}
+
+
+function obtenerEstadoAudio(){
+
+  try{
+
+    const guardado =
+      localStorage.getItem(
+        CLAVE_ESTADO_AUDIO
+      );
+
+    if(!guardado){
+      return null;
+    }
+
+    return JSON.parse(
+      guardado
+    );
+
+  }
+
+  catch(error){
+
+    return null;
+
+  }
+
+}
+
+
+
+controlVolumen.addEventListener(
+  "input",
+  () => {
+
+    reproductor.volume =
+      Number(
+        controlVolumen.value
+      );
+
+  }
+);
+
+
+controlVelocidad.addEventListener(
+  "change",
+  () => {
+
+    reproductor.playbackRate =
+      Number(
+        controlVelocidad.value
+      );
+
+  }
+);
+
+/* =========================================================
+   AUDIOS COMPLETADOS
+========================================================= */
+
+const CLAVE_AUDIOS_COMPLETADOS =
+  "badbear_derma_audios_completados";
+
+
+function obtenerAudiosCompletados(){
+
+  try{
+
+    const guardados =
+      JSON.parse(
+        localStorage.getItem(
+          CLAVE_AUDIOS_COMPLETADOS
+        )
+      );
+
+    return Array.isArray(guardados)
+      ? guardados
+      : [];
+
+  }
+
+  catch(error){
+
+    return [];
+
+  }
+
+}
+
+
+let audiosCompletados =
+  new Set(
+    obtenerAudiosCompletados()
+  );
+
+
+function guardarAudiosCompletados(){
+
+  localStorage.setItem(
+    CLAVE_AUDIOS_COMPLETADOS,
+
+    JSON.stringify(
+      [...audiosCompletados]
+    )
+  );
+
+}
+
+
+function actualizarEstadoPlaylist(){
+
+  document
+    .querySelectorAll(".audio-item")
+    .forEach(item => {
+
+      const indice =
+        Number(
+          item.dataset.indice
+        );
+
+      const icono =
+        item.querySelector(
+          ".audio-item-play"
+        );
+
+
+      if(
+        audiosCompletados.has(indice)
+      ){
+
+        item.classList.add(
+          "completado"
+        );
+
+        if(icono){
+          icono.textContent = "✓";
+        }
+
+      }
+
+      else{
+
+        item.classList.remove(
+          "completado"
+        );
+
+        if(icono){
+          icono.textContent = "▶";
+        }
+
+      }
+
+    });
+
+
+  const resumen =
+    document.getElementById(
+      "audio-resumen"
+    );
+
+
+  if(resumen){
+
+    resumen.textContent =
+      `${audiosCompletados.size} de ${canciones.length} escuchados`;
+
+  }
+
+}
+
+function formatoTiempo(segundos){
+
+  if(
+    !Number.isFinite(segundos)
+  ){
+    return "0:00";
+  }
+
+  const minutos =
+    Math.floor(segundos / 60);
+
+  const segundosRestantes =
+    Math.floor(segundos % 60)
+      .toString()
+      .padStart(2,"0");
+
+  return `${minutos}:${segundosRestantes}`;
+
+}
+
+
+
+function cargarCancion(indice){
+
+  indiceActual = indice;
+
+  const cancion =
+    canciones[indiceActual];
+
+  reproductor.src =
+    cancion.archivo;
+
+  titulo.textContent =
+    cancion.titulo;
+
+  document
+    .querySelectorAll(".audio-item")
+    .forEach(
+      item =>
+        item.classList.remove("activo")
+    );
+
+  const activo =
+    document.querySelector(
+      `[data-indice="${indiceActual}"]`
+    );
+
+  if(activo){
+    activo.classList.add("activo");
+  }
+
+}
+
+
+
+function reproducir(){
+
+  reproductor.play();
+
+  play.textContent =
+    "❚❚";
+
+}
+
+
+
+function pausar(){
+
+  reproductor.pause();
+
+  play.textContent =
+    "▶";
+
+}
+
+
+
+play.addEventListener(
+  "click",
+  () => {
+
+    if(
+      reproductor.paused
+    ){
+      reproducir();
+    }
+
+    else{
+      pausar();
+    }
+
+  }
+);
+
+
+
+anterior.addEventListener(
+  "click",
+  () => {
+
+    indiceActual--;
+
+    if(
+      indiceActual < 0
+    ){
+      indiceActual =
+        canciones.length - 1;
+    }
+
+    cargarCancion(
+      indiceActual
+    );
+
+    reproducir();
+
+  }
+);
+
+
+
+siguiente.addEventListener(
+  "click",
+  () => {
+
+    indiceActual++;
+
+    if(
+      indiceActual >=
+      canciones.length
+    ){
+      indiceActual = 0;
+    }
+
+    cargarCancion(
+      indiceActual
+    );
+
+    reproducir();
+
+  }
+);
+
+
+
+reproductor.addEventListener(
+  "timeupdate",
+  () => {
+
+    if(
+      !reproductor.duration
+    ){
+      return;
+    }
+
+    progreso.value =
+      (
+        reproductor.currentTime /
+        reproductor.duration
+      ) * 100;
+
+    tiempoActual.textContent =
+      formatoTiempo(
+        reproductor.currentTime
+      );
+
+    tiempoTotal.textContent =
+      formatoTiempo(
+        reproductor.duration
+      );
+
+  }
+);
+
+
+
+progreso.addEventListener(
+  "input",
+  () => {
+
+    if(
+      !reproductor.duration
+    ){
+      return;
+    }
+
+    reproductor.currentTime =
+      (
+        progreso.value / 100
+      ) *
+      reproductor.duration;
+
+  }
+);
+
+
+
+reproductor.addEventListener(
+  "ended",
+  () => {
+
+    audiosCompletados.add(
+      indiceActual
+    );
+
+    guardarAudiosCompletados();
+
+    actualizarEstadoPlaylist();
+
+    siguiente.click();
+
+  }
+);
+
+/* =========================================================
+   GUARDAR PROGRESO DEL AUDIO
+========================================================= */
+
+let ultimoSegundoGuardado = -1;
+
+
+reproductor.addEventListener(
+  "timeupdate",
+  () => {
+
+    const segundoActual =
+      Math.floor(
+        reproductor.currentTime
+      );
+
+    if(
+      segundoActual > 0 &&
+      segundoActual % 5 === 0 &&
+      segundoActual !==
+      ultimoSegundoGuardado
+    ){
+
+      ultimoSegundoGuardado =
+        segundoActual;
+
+      guardarEstadoAudio();
+
+    }
+
+  }
+);
+
+
+reproductor.addEventListener(
+  "pause",
+  guardarEstadoAudio
+);
+
+
+reproductor.addEventListener(
+  "seeked",
+  guardarEstadoAudio
+);
+
+
+reproductor.addEventListener(
+  "volumechange",
+  guardarEstadoAudio
+);
+
+
+reproductor.addEventListener(
+  "ratechange",
+  guardarEstadoAudio
+);
+
+
+window.addEventListener(
+  "beforeunload",
+  guardarEstadoAudio
+);
+
+canciones.forEach(
+  (cancion, indice) => {
+
+    const boton =
+      document.createElement("button");
+
+    boton.className =
+      "audio-item";
+
+    boton.dataset.indice =
+      indice;
+
+    boton.innerHTML = `
+
+      <span class="audio-numero">
+        ${String(indice + 1)
+          .padStart(2,"0")}
+      </span>
+
+      <span>
+
+        <span class="audio-item-titulo">
+          ${cancion.titulo}
+        </span>
+
+        <span class="audio-item-sub">
+          BADBEAR.MED · Dermatología
+        </span>
+
+      </span>
+
+      <span class="audio-item-play">
+        ▶
+      </span>
+
+    `;
+
+
+    boton.addEventListener(
+      "click",
+      () => {
+
+        cargarCancion(
+          indice
+        );
+
+        reproducir();
+
+      }
+    );
+
+
+    playlist.appendChild(
+      boton
+    );
+
+  }
+);
+
+actualizarEstadoPlaylist();
+
+/* =========================================================
+   RESTAURAR ÚLTIMO AUDIO ESCUCHADO
+========================================================= */
+
+const estadoGuardado =
+  obtenerEstadoAudio();
+
+
+if(
+  estadoGuardado &&
+  Number.isInteger(
+    estadoGuardado.indice
+  ) &&
+  canciones[
+    estadoGuardado.indice
+  ]
+){
+
+  const tiempoGuardado =
+    Number(
+      estadoGuardado.tiempo
+    ) || 0;
+
+
+  if(
+    typeof estadoGuardado.volumen
+    === "number"
+  ){
+
+    reproductor.volume =
+      estadoGuardado.volumen;
+
+    controlVolumen.value =
+      estadoGuardado.volumen;
+
+  }
+
+
+  if(
+    typeof estadoGuardado.velocidad
+    === "number"
+  ){
+
+    reproductor.playbackRate =
+      estadoGuardado.velocidad;
+
+    controlVelocidad.value =
+      String(
+        estadoGuardado.velocidad
+      );
+
+  }
+
+
+  reproductor.addEventListener(
+    "loadedmetadata",
+
+    () => {
+
+      if(
+        tiempoGuardado > 0 &&
+        tiempoGuardado <
+        reproductor.duration
+      ){
+
+        reproductor.currentTime =
+          tiempoGuardado;
+
+      }
+
+    },
+
+    {
+      once:true
+    }
+
+  );
+
+
+  cargarCancion(
+    estadoGuardado.indice
+  );
+
+}
+
+else{
+
+  cargarCancion(0);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
