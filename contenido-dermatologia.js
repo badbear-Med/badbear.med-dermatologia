@@ -4,9 +4,9 @@
 
    Para agregar material nuevo:
    1) Sube el MP3 a /audios/
-   2) Coloca su ruta en la propiedad audio del tema.
-   3) Coloca el enlace individual de YouTube en video cuando exista.
-   4) El reproductor y la página Audio se actualizan automáticamente.
+   2) Sube el PDF individual a /pdfs/temas/
+   3) Coloca su ruta en audio/pdf y el enlace de YouTube en video.
+   4) El reproductor y las páginas asociadas se actualizan automáticamente.
 ========================================================= */
 
 (function(){
@@ -19,7 +19,8 @@
       id:1,
       titulo:"Anatomía y fisiología de la piel",
       audio:"audios/01-anatomia-piel.mp3",
-      video:null,
+      pdf:null,
+      video:"https://youtu.be/9Uk8OmtFwjI",
       teoria:"teoria.html",
       estado:"disponible"
     },
@@ -27,7 +28,8 @@
       id:2,
       titulo:"Lesiones elementales",
       audio:"audios/02-lesiones-elementales.mp3",
-      video:null,
+      pdf:null,
+      video:"https://youtu.be/HAd6ZG833Yw",
       teoria:"teoria.html",
       estado:"disponible"
     },
@@ -35,7 +37,8 @@
       id:3,
       titulo:"Enfermedades inflamatorias de la piel",
       audio:"audios/03-enfermedades-inflamatorias.mp3",
-      video:null,
+      pdf:null,
+      video:"https://youtu.be/FKfTnGgf5lk",
       teoria:"teoria.html",
       estado:"disponible"
     },
@@ -43,7 +46,8 @@
       id:4,
       titulo:"Enfermedades parasitarias de la piel",
       audio:"audios/04-enfermedades-parasitarias.mp3",
-      video:null,
+      pdf:null,
+      video:"https://youtu.be/WFitfjbQ69M",
       teoria:"teoria.html",
       estado:"disponible"
     },
@@ -51,7 +55,8 @@
       id:5,
       titulo:"Enfermedades bacterianas de la piel",
       audio:"audios/05-enfermedades-bacterianas.mp3",
-      video:null,
+      pdf:null,
+      video:"https://youtu.be/iNXyRx2h4vY",
       teoria:"teoria.html",
       estado:"disponible"
     },
@@ -59,20 +64,29 @@
       id:6,
       titulo:"Enfermedades virales de la piel",
       audio:"audios/06-enfermedades-virales.mp3",
-      video:null,
+      pdf:null,
+      video:"https://youtu.be/wpaY9z9biXA",
       teoria:"teoria.html",
       estado:"disponible"
     },
-    { id:7,  titulo:"Tema 07 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:8,  titulo:"Tema 08 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:9,  titulo:"Tema 09 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:10, titulo:"Tema 10 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:11, titulo:"Tema 11 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:12, titulo:"Tema 12 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:13, titulo:"Tema 13 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:14, titulo:"Tema 14 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:15, titulo:"Tema 15 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" },
-    { id:16, titulo:"Tema 16 · pendiente de definir", audio:null, video:null, teoria:"teoria.html", estado:"pendiente" }
+    {
+      id:7,
+      titulo:"Tema 07 · pendiente de definir",
+      audio:null,
+      pdf:null,
+      video:"https://youtu.be/5crcG0UG3wM",
+      teoria:"teoria.html",
+      estado:"parcial"
+    },
+    { id:8,  titulo:"Tema 08 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:9,  titulo:"Tema 09 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:10, titulo:"Tema 10 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:11, titulo:"Tema 11 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:12, titulo:"Tema 12 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:13, titulo:"Tema 13 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:14, titulo:"Tema 14 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:15, titulo:"Tema 15 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
+    { id:16, titulo:"Tema 16 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" }
   ];
 
   window.BADBEAR_DERMATOLOGIA = Object.freeze({
