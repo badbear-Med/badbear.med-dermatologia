@@ -101,14 +101,30 @@
     a.addEventListener("click",e=>{e.preventDefault();navegar(a.dataset.shellPage)});
   });
 
+  function aplicarExamMovilForzado(){
+    try{
+      const doc = frame.contentDocument;
+      const win = frame.contentWindow;
+      if(!doc || !win) return;
+      const nombre = win.location.pathname.split("/").pop() || "index.html";
+      const activar = nombre === "examenes.html" && window.innerWidth <= 900;
+      doc.documentElement.classList.toggle("bb-force-mobile-exam", activar);
+      if(doc.body) doc.body.classList.toggle("bb-force-mobile-exam", activar);
+      if(activar){
+        doc.documentElement.scrollLeft = 0;
+        if(doc.body) doc.body.scrollLeft = 0;
+      }
+    }catch(e){}
+  }
+
+  window.addEventListener("resize", aplicarExamMovilForzado, {passive:true});
+
   frame.addEventListener("load",()=>{
     try{
       const doc = frame.contentDocument;
       const win = frame.contentWindow;
       if(!doc || !win) return;
 
-      /* Las páginas internas están dentro de un iframe. Auth no carga las
-         correcciones móviles en modo embebido, por eso las cargamos aquí. */
       if(!doc.querySelector('link[data-bb-embed-mobile="1"]')){
         const mobile = doc.createElement("link");
         mobile.rel = "stylesheet";
@@ -117,7 +133,6 @@
         doc.head.appendChild(mobile);
       }
 
-      /* Fondo institucional y marca de agua uniforme en todas las secciones. */
       if(!doc.querySelector('link[data-bb-watermark="1"]')){
         const fondo = doc.createElement("link");
         fondo.rel = "stylesheet";
@@ -126,23 +141,25 @@
         doc.head.appendChild(fondo);
       }
 
+      if(!doc.querySelector('link[data-bb-exam-mobile-hardfix="1"]')){
+        const examFix = doc.createElement("link");
+        examFix.rel = "stylesheet";
+        examFix.href = "exam-mobile-hardfix.css?v=1";
+        examFix.dataset.bbExamMobileHardfix = "1";
+        doc.head.appendChild(examFix);
+      }
+
       const ocultar = doc.createElement("style");
       ocultar.textContent = `
         .bb-header,.cabecera.bb-header,body>footer,.bb-auth-logout{display:none!important}
         body{padding-top:0!important;margin-top:0!important}
         .exam-main,.atlas-main,.inicio-badbear,.teoria-badbear,.audio-main,.repaso-main,.progreso-badbear{margin-top:18px!important}
-        @media(max-width:900px){
-          html,body{max-width:100%!important;overflow-x:hidden!important}
-          .exam-main{width:100%!important;max-width:100%!important;padding-left:12px!important;padding-right:12px!important;box-sizing:border-box!important}
-          .exam-hero{width:100%!important;max-width:100%!important;box-sizing:border-box!important;overflow:hidden!important}
-          .exam-tools{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:100%!important;gap:8px!important}
-          .exam-tools>*{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
-          .exam-youtube{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
-        }
       `;
       doc.head.appendChild(ocultar);
 
       const nombre = win.location.pathname.split("/").pop() || "index.html";
+      aplicarExamMovilForzado();
+
       if(permitidas.has(nombre)){
         const actual = nombre + win.location.search.replace(/[?&]bbembed=1(?:&|$)/,"?").replace(/\?$/,"") + win.location.hash;
         actualizarActivo(nombre);
