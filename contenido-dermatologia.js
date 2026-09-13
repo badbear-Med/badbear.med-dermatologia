@@ -71,12 +71,12 @@
     },
     {
       id:7,
-      titulo:"Tema 07 · pendiente de definir",
-      audio:null,
+      titulo:"Tema 07",
+      audio:"audios/07-poner su nombre.mp3",
       pdf:"pdfs/temas/07-tema.pdf",
       video:"https://youtu.be/5crcG0UG3wM",
       teoria:"teoria.html",
-      estado:"parcial"
+      estado:"disponible"
     },
     { id:8,  titulo:"Tema 08 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
     { id:9,  titulo:"Tema 09 · pendiente de definir", audio:null, pdf:null, video:null, teoria:"teoria.html", estado:"pendiente" },
