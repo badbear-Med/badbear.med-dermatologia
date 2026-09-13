@@ -14,11 +14,10 @@
     .bb-shell-stage{position:relative;flex:1 1 auto;min-height:0;background:#f5f7fb}
     #bb-app-frame{width:100%;height:100%;border:0;display:block;background:#f5f7fb}
     body.bb-study-audio-activo .bb-shell-stage{padding-bottom:106px;box-sizing:border-box}
-    @media(max-width:760px){
-      body.bb-study-audio-activo .bb-shell-stage{padding-bottom:148px}
-    }
+    @media(max-width:760px){body.bb-study-audio-activo .bb-shell-stage{padding-bottom:148px}}
   </style>
   <script src="auth.js"></script>
+  <script src="contenido-dermatologia.js"></script>
   <script src="theory-audio.js" defer></script>
 </head>
 <body>
@@ -73,15 +72,11 @@
     }
   }
 
-  function archivoBase(valor){
-    return String(valor || "index.html").split("?")[0].split("#")[0];
-  }
+  function archivoBase(valor){return String(valor || "index.html").split("?")[0].split("#")[0]}
 
   function actualizarActivo(pagina){
     const base = archivoBase(pagina);
-    document.querySelectorAll("[data-shell-page]").forEach(a=>{
-      a.classList.toggle("nav-activo", a.dataset.shellPage === base);
-    });
+    document.querySelectorAll("[data-shell-page]").forEach(a=>a.classList.toggle("nav-activo",a.dataset.shellPage===base));
   }
 
   function navegar(pagina, actualizarURL=true){
@@ -89,23 +84,17 @@
     const separador = destino.includes("?") ? "&" : "?";
     frame.src = destino + separador + "bbembed=1";
     actualizarActivo(destino);
-    if(actualizarURL){
-      history.replaceState(null,"",`estudio.html?page=${encodeURIComponent(destino)}`);
-    }
+    if(actualizarURL) history.replaceState(null,"",`estudio.html?page=${encodeURIComponent(destino)}`);
     const header = document.querySelector(".bb-header");
     const menuBtn = document.querySelector(".bb-mobile-menu-btn");
     if(header) header.classList.remove("bb-menu-abierto");
-    if(menuBtn){
-      menuBtn.setAttribute("aria-expanded","false");
-      menuBtn.innerHTML = "☰ <span>Menú</span>";
-    }
+    if(menuBtn){menuBtn.setAttribute("aria-expanded","false");menuBtn.innerHTML="☰ <span>Menú</span>"}
   }
 
+  window.BADBEAR_SHELL_NAVIGATE = navegar;
+
   document.querySelectorAll("[data-shell-page]").forEach(a=>{
-    a.addEventListener("click", e=>{
-      e.preventDefault();
-      navegar(a.dataset.shellPage);
-    });
+    a.addEventListener("click",e=>{e.preventDefault();navegar(a.dataset.shellPage)});
   });
 
   frame.addEventListener("load",()=>{
@@ -134,10 +123,7 @@
         if(a.target === "_blank" || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("#")) return;
         const archivo = href.split("?")[0].split("#")[0];
         if(permitidas.has(archivo)){
-          a.addEventListener("click",ev=>{
-            ev.preventDefault();
-            navegar(href);
-          });
+          a.addEventListener("click",ev=>{ev.preventDefault();navegar(href)});
         }
       });
     }catch(e){}
