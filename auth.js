@@ -69,6 +69,18 @@
     }
   }
 
+  function cargarTemaVivo() {
+    if (!document.querySelector('link[data-bb-vivid="1"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "vivid-theme.css?v=1";
+      link.dataset.bbVivid = "1";
+      document.head.appendChild(link);
+    }
+  }
+
+  cargarTemaVivo();
+
   function prepararMenuMovil() {
     const header = document.querySelector(".bb-header");
     const nav = header && header.querySelector(".nav-principal");
