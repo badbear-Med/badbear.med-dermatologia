@@ -1,5 +1,19 @@
 /* BADBEAR.MED · Exámenes pasados · corrección móvil forzada dentro del shell */
 
+/* Tarjeta del canal: usar el logo institucional, no el icono genérico de YouTube */
+.exam-youtube-icono{
+  flex:0 0 64px!important;
+  width:64px!important;
+  height:64px!important;
+  font-size:0!important;
+  color:transparent!important;
+  background:#fff url("badbear_logo.png") center/contain no-repeat!important;
+  border:1px solid #e3e8f0!important;
+  border-radius:50%!important;
+  box-shadow:0 7px 20px rgba(18,34,74,.12)!important;
+  overflow:hidden!important;
+}
+
 .bb-force-mobile-exam,
 .bb-force-mobile-exam body{
   max-width:100%!important;
@@ -54,9 +68,9 @@
 }
 
 .bb-force-mobile-exam .exam-youtube-icono{
-  flex:0 0 44px!important;
-  width:44px!important;
-  height:44px!important;
+  flex:0 0 48px!important;
+  width:48px!important;
+  height:48px!important;
 }
 
 .bb-force-mobile-exam .exam-youtube-contenido strong,
