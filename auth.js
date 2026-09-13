@@ -55,7 +55,7 @@
     if (!document.querySelector('link[data-bb-mobile="1"]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "mobile-fixes.css";
+      link.href = "mobile-fixes.css?v=2";
       link.dataset.bbMobile = "1";
       document.head.appendChild(link);
     }
