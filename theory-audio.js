@@ -1,6 +1,8 @@
 (function(){
   "use strict";
 
+  if(window.self !== window.top) return;
+
   const TRACKS = [
     { titulo:"Anatomía y fisiología de la piel", archivo:"audios/01-anatomia-piel.mp3" },
     { titulo:"Lesiones elementales", archivo:"audios/02-lesiones-elementales.mp3" },
@@ -17,18 +19,14 @@
     try{
       const raw = localStorage.getItem(CLAVE_ESTADO);
       return raw ? JSON.parse(raw) : null;
-    }catch(e){
-      return null;
-    }
+    }catch(e){ return null; }
   }
 
   function leerCompletados(){
     try{
       const valor = JSON.parse(localStorage.getItem(CLAVE_COMPLETADOS));
       return Array.isArray(valor) ? valor : [];
-    }catch(e){
-      return [];
-    }
+    }catch(e){ return []; }
   }
 
   function formato(segundos){
@@ -71,7 +69,7 @@
         <div class="bb-study-meta">
           <span class="bb-study-kicker">🎧 AUDIO DE ESTUDIO</span>
           <strong id="bb-study-title" class="bb-study-title">Anatomía y fisiología de la piel</strong>
-          <span class="bb-study-sub">Escucha mientras lees el cuaderno</span>
+          <span class="bb-study-sub">Sigue escuchando mientras navegas por BADBEAR.MED</span>
         </div>
         <div class="bb-study-controls">
           <button id="bb-study-prev" class="bb-study-btn" type="button" aria-label="Audio anterior">◀</button>
@@ -156,9 +154,7 @@
       try{
         await media.play();
         play.textContent = "❚❚";
-      }catch(e){
-        play.textContent = "▶";
-      }
+      }catch(e){ play.textContent = "▶"; }
     }
 
     function pausar(){
@@ -170,23 +166,9 @@
     play.addEventListener("click",()=> media.paused ? reproducir() : pausar());
     prev.addEventListener("click",()=>{ guardar(); cargar(indice-1); reproducir(); });
     next.addEventListener("click",()=>{ guardar(); cargar(indice+1); reproducir(); });
-
-    selector.addEventListener("change",()=>{
-      guardar();
-      cargar(Number(selector.value));
-      reproducir();
-    });
-
-    velocidad.addEventListener("change",()=>{
-      media.playbackRate = Number(velocidad.value) || 1;
-      guardar();
-    });
-
-    rango.addEventListener("input",()=>{
-      if(media.duration){
-        media.currentTime = (Number(rango.value)/100) * media.duration;
-      }
-    });
+    selector.addEventListener("change",()=>{ guardar(); cargar(Number(selector.value)); reproducir(); });
+    velocidad.addEventListener("change",()=>{ media.playbackRate = Number(velocidad.value) || 1; guardar(); });
+    rango.addEventListener("input",()=>{ if(media.duration) media.currentTime = (Number(rango.value)/100) * media.duration; });
 
     media.addEventListener("play",()=> play.textContent="❚❚");
     media.addEventListener("pause",()=> play.textContent="▶");
@@ -196,10 +178,7 @@
       total.textContent = formato(media.duration);
       if(media.duration) rango.value = String((media.currentTime/media.duration)*100);
       const s = Math.floor(media.currentTime);
-      if(s > 0 && s % 5 === 0 && s !== ultimoGuardado){
-        ultimoGuardado = s;
-        guardar();
-      }
+      if(s > 0 && s % 5 === 0 && s !== ultimoGuardado){ ultimoGuardado = s; guardar(); }
     });
 
     media.addEventListener("ended",()=>{
@@ -229,9 +208,7 @@
         velocidad.value = String(estado.velocidad);
       }
       cargar(indice, Number(estado.tiempo)||0);
-    }else{
-      cargar(0);
-    }
+    }else cargar(0);
   }
 
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded",iniciar,{once:true});
