@@ -10,6 +10,143 @@
     <script src="auth.js"></script>
     <script src="contenido-dermatologia.js"></script>
     <script src="theory-audio.js" defer></script>
+    <style>
+        .indice-temas{
+            margin:22px 0 20px;
+            background:#fff;
+            border:1px solid #e2e8f0;
+            border-radius:22px;
+            padding:22px;
+            box-shadow:0 10px 30px rgba(17,24,39,.05);
+        }
+        .indice-temas-cabecera{
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-end;
+            gap:18px;
+            margin-bottom:16px;
+        }
+        .indice-temas-kicker{
+            display:block;
+            color:#2458ff;
+            font-size:10px;
+            font-weight:950;
+            letter-spacing:.8px;
+            margin-bottom:5px;
+        }
+        .indice-temas h3{
+            margin:0;
+            color:#111827;
+            font-size:22px;
+        }
+        .indice-temas-cabecera p{
+            margin:0;
+            color:#667085;
+            font-size:12px;
+            line-height:1.5;
+            max-width:470px;
+        }
+        .indice-completo{
+            width:100%;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:14px;
+            padding:13px 15px;
+            margin-bottom:10px;
+            border:1px solid #cfd8e6;
+            border-radius:13px;
+            background:#f8faff;
+            color:#111827;
+            cursor:pointer;
+            text-align:left;
+        }
+        .indice-completo strong{font-size:13px}
+        .indice-completo span{font-size:10px;color:#667085}
+        .indice-completo.activo{
+            border-color:#2458ff;
+            background:#eef3ff;
+            box-shadow:0 0 0 3px rgba(36,88,255,.08);
+        }
+        .temas-directos{
+            display:grid;
+            grid-template-columns:repeat(2,minmax(0,1fr));
+            gap:9px;
+        }
+        .tema-directo{
+            min-width:0;
+            display:grid;
+            grid-template-columns:42px minmax(0,1fr) auto;
+            align-items:center;
+            gap:10px;
+            padding:11px 12px;
+            border:1px solid #e2e8f0;
+            border-radius:12px;
+            background:#fff;
+            text-align:left;
+            cursor:pointer;
+            transition:.15s ease;
+        }
+        .tema-directo:hover:not(:disabled){
+            border-color:#9db7ff;
+            background:#f8faff;
+            transform:translateY(-1px);
+        }
+        .tema-directo.activo{
+            border-color:#2458ff;
+            background:#eef3ff;
+            box-shadow:0 0 0 3px rgba(36,88,255,.08);
+        }
+        .tema-directo:disabled{
+            cursor:not-allowed;
+            opacity:.48;
+            background:#f8fafc;
+        }
+        .tema-directo-num{
+            width:38px;
+            height:38px;
+            border-radius:10px;
+            display:grid;
+            place-items:center;
+            background:#eef3ff;
+            color:#2458ff;
+            font-size:11px;
+            font-weight:950;
+        }
+        .tema-directo-texto{min-width:0}
+        .tema-directo-texto strong{
+            display:block;
+            color:#111827;
+            font-size:12px;
+            line-height:1.3;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
+        .tema-directo-texto small{
+            display:block;
+            margin-top:3px;
+            color:#667085;
+            font-size:9px;
+            font-weight:700;
+        }
+        .tema-directo-accion{
+            color:#2458ff;
+            font-size:10px;
+            font-weight:900;
+            white-space:nowrap;
+        }
+        .tema-directo:disabled .tema-directo-accion{color:#98a2b3}
+        .visor-cabecera h3{margin-bottom:3px}
+        #visor-subtitulo{margin:0;color:#667085;font-size:11px}
+        @media(max-width:760px){
+            .indice-temas{padding:17px 14px;border-radius:17px}
+            .indice-temas-cabecera{display:block}
+            .indice-temas-cabecera p{margin-top:8px}
+            .temas-directos{grid-template-columns:1fr}
+            .tema-directo-texto strong{white-space:normal}
+        }
+    </style>
 </head>
 <body>
 <header class="cabecera bb-header">
@@ -43,40 +180,105 @@
     <section class="cabecera-teoria">
         <span class="hero-etiqueta">CUADERNO BADBEAR.MED</span>
         <h2>Dermatología</h2>
-        <p>
-            Resumen integral de la unidad de Dermatología,
-            desarrollado progresivamente durante el curso.
-        </p>
+        <p>Resumen integral de la unidad de Dermatología, desarrollado progresivamente durante el curso.</p>
     </section>
 
-    <section class="cuaderno-card">
-        <div class="cuaderno-info">
-            <div class="cuaderno-icono">PDF</div>
+    <section class="indice-temas" aria-labelledby="indice-temas-titulo">
+        <div class="indice-temas-cabecera">
             <div>
-                <h3>Cuaderno BADBEAR.MED – Dermatología</h3>
-                <p>Material de estudio centralizado con los temas desarrollados durante la unidad.</p>
-                <p class="estado-cuaderno">Documento en desarrollo · 16 temas planificados</p>
+                <span class="indice-temas-kicker">ÍNDICE RÁPIDO</span>
+                <h3 id="indice-temas-titulo">Ir directamente al tema</h3>
             </div>
+            <p>Selecciona un tema y el lector de abajo abrirá directamente su PDF sin salir de Teoría.</p>
         </div>
 
-        <div class="acciones-cuaderno">
-            <a href="pdfs/cuaderno-dermatologia.pdf" target="_blank" class="btn-principal">Abrir PDF</a>
-            <a href="pdfs/cuaderno-dermatologia.pdf" download class="btn-secundario-inicio">Descargar</a>
-        </div>
+        <button id="btn-cuaderno-completo" class="indice-completo activo" type="button">
+            <div>
+                <strong>Cuaderno completo de Dermatología</strong><br>
+                <span>Ver el documento general con todos los temas disponibles</span>
+            </div>
+            <span>ABRIR ↓</span>
+        </button>
+
+        <div id="temas-directos" class="temas-directos"></div>
     </section>
 
     <section class="visor-pdf">
         <div class="visor-cabecera">
             <div>
                 <span class="visor-etiqueta">LECTOR</span>
-                <h3>Cuaderno de Dermatología</h3>
+                <h3 id="visor-titulo">Cuaderno de Dermatología</h3>
+                <p id="visor-subtitulo">Documento completo</p>
             </div>
-            <a href="pdfs/cuaderno-dermatologia.pdf" target="_blank">Pantalla completa ↗</a>
+            <a id="visor-pantalla-completa" href="pdfs/cuaderno-dermatologia.pdf" target="_blank" rel="noopener noreferrer">Pantalla completa ↗</a>
         </div>
-        <iframe src="pdfs/cuaderno-dermatologia.pdf" title="Cuaderno BADBEAR.MED Dermatología"></iframe>
+        <iframe id="visor-pdf-frame" src="pdfs/cuaderno-dermatologia.pdf" title="Cuaderno BADBEAR.MED Dermatología"></iframe>
     </section>
 </main>
 
 <footer>BADBEAR.MED · Dermatología · WAJOMEA.GROUP</footer>
+
+<script>
+(function(){
+    "use strict";
+
+    const C = window.BADBEAR_DERMATOLOGIA;
+    const contenedor = document.getElementById("temas-directos");
+    const frame = document.getElementById("visor-pdf-frame");
+    const titulo = document.getElementById("visor-titulo");
+    const subtitulo = document.getElementById("visor-subtitulo");
+    const pantallaCompleta = document.getElementById("visor-pantalla-completa");
+    const completo = document.getElementById("btn-cuaderno-completo");
+    const PDF_COMPLETO = "pdfs/cuaderno-dermatologia.pdf";
+
+    if(!C || !contenedor || !frame) return;
+
+    function limpiarActivo(){
+        completo.classList.remove("activo");
+        contenedor.querySelectorAll(".tema-directo").forEach(btn=>btn.classList.remove("activo"));
+    }
+
+    function abrirPDF(ruta, nombre, detalle, boton){
+        if(!ruta) return;
+        limpiarActivo();
+        if(boton) boton.classList.add("activo");
+        frame.src = ruta;
+        frame.title = `${nombre} · BADBEAR.MED Dermatología`;
+        titulo.textContent = nombre;
+        subtitulo.textContent = detalle || "PDF del tema";
+        pantallaCompleta.href = ruta;
+        document.querySelector(".visor-pdf")?.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    completo.addEventListener("click",()=>{
+        abrirPDF(PDF_COMPLETO,"Cuaderno de Dermatología","Documento completo",completo);
+    });
+
+    contenedor.innerHTML = C.temas.map(t=>{
+        const numero = String(t.id).padStart(2,"0");
+        const disponible = !!t.pdf;
+        const texto = disponible ? "ABRIR ↓" : "PENDIENTE";
+        const detalle = disponible ? "PDF individual disponible" : "PDF aún no publicado";
+        return `
+            <button class="tema-directo" type="button" data-tema-id="${t.id}" ${disponible ? "" : "disabled"}>
+                <span class="tema-directo-num">${numero}</span>
+                <span class="tema-directo-texto">
+                    <strong>${t.titulo}</strong>
+                    <small>${detalle}</small>
+                </span>
+                <span class="tema-directo-accion">${texto}</span>
+            </button>`;
+    }).join("");
+
+    contenedor.querySelectorAll(".tema-directo:not(:disabled)").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+            const id = Number(btn.dataset.temaId);
+            const tema = C.temas.find(t=>t.id===id);
+            if(!tema || !tema.pdf) return;
+            abrirPDF(tema.pdf,`Tema ${String(tema.id).padStart(2,"0")} · ${tema.titulo}`,"PDF individual del tema",btn);
+        });
+    });
+})();
+</script>
 </body>
 </html>
