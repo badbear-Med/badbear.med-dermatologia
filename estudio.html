@@ -10,6 +10,7 @@
   <link rel="apple-touch-icon" href="badbear_logo.png?v=2">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="badbear-theme.css">
+  <link rel="stylesheet" href="watermark-theme.css?v=1">
   <style>
     html,body{height:100%;margin:0;overflow:hidden;background:#f5f7fb}
     body{display:flex;flex-direction:column}
@@ -114,6 +115,15 @@
         mobile.href = "mobile-fixes.css?v=4";
         mobile.dataset.bbEmbedMobile = "1";
         doc.head.appendChild(mobile);
+      }
+
+      /* Fondo institucional y marca de agua uniforme en todas las secciones. */
+      if(!doc.querySelector('link[data-bb-watermark="1"]')){
+        const fondo = doc.createElement("link");
+        fondo.rel = "stylesheet";
+        fondo.href = "watermark-theme.css?v=1";
+        fondo.dataset.bbWatermark = "1";
+        doc.head.appendChild(fondo);
       }
 
       const ocultar = doc.createElement("style");
