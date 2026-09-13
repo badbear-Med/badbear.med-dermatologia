@@ -1,0 +1,336 @@
+/* =========================================================
+   BADBEAR.MED · DERMATOLOGÍA · TEMA VIVO 2026
+   Rojo + anaranjado + amarillo + verde + azul
+   Capa visual aditiva: no modifica la lógica de la plataforma.
+========================================================= */
+
+:root{
+  --bb-red:#ef3b2d;
+  --bb-orange-v:#ff8a00;
+  --bb-yellow-v:#ffc928;
+  --bb-green:#18b86b;
+  --bb-blue-v:#2458ff;
+  --bb-pink:#d94fa3;
+  --bb-navy:#12224a;
+  --bb-soft-blue:#eef4ff;
+  --bb-soft-green:#edfbf4;
+  --bb-soft-yellow:#fff8d9;
+  --bb-soft-orange:#fff1e8;
+  --bb-soft-red:#fff0ee;
+  --bb-rainbow:linear-gradient(90deg,#ef3b2d 0%,#ff8a00 22%,#ffc928 40%,#18b86b 58%,#2458ff 78%,#d94fa3 100%);
+}
+
+html,body{
+  background:
+    radial-gradient(circle at 7% 8%,rgba(36,88,255,.09),transparent 29%),
+    radial-gradient(circle at 94% 14%,rgba(239,59,45,.075),transparent 27%),
+    radial-gradient(circle at 82% 92%,rgba(24,184,107,.055),transparent 25%),
+    #f6f8fc !important;
+}
+
+/* ---------- Cabecera ---------- */
+.bb-header{
+  background:rgba(255,255,255,.97)!important;
+  border-bottom:1px solid #e4e9f2!important;
+  box-shadow:0 5px 22px rgba(18,34,74,.055);
+}
+
+.bb-header .marca-texto h1{
+  color:var(--bb-navy)!important;
+  letter-spacing:-.7px;
+}
+
+.bb-header .marca-texto h1 span{
+  background:linear-gradient(90deg,var(--bb-blue-v),var(--bb-pink));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent!important;
+}
+
+.bb-header .nav-principal{gap:7px!important}
+
+.bb-header .nav-item{
+  border-radius:999px!important;
+  padding-left:13px!important;
+  padding-right:13px!important;
+  border:1px solid transparent!important;
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease,color .16s ease!important;
+}
+
+.bb-header .nav-item:hover{
+  transform:translateY(-1px);
+  border-color:#dfe6f0!important;
+  background:#fff!important;
+  box-shadow:0 5px 14px rgba(18,34,74,.07);
+}
+
+.bb-header .nav-item.nav-activo{
+  color:var(--bb-navy)!important;
+  background:linear-gradient(135deg,#fff2eb,#fff8df)!important;
+  border-color:#ffd8bd!important;
+  box-shadow:0 5px 15px rgba(255,138,0,.10);
+}
+
+.bb-header .nav-item.nav-activo::after{
+  left:26%!important;
+  right:26%!important;
+  bottom:-3px!important;
+  height:3px!important;
+  border-radius:999px!important;
+  background:var(--bb-rainbow)!important;
+}
+
+/* ---------- Inicio ---------- */
+.hero-badbear{
+  border-radius:28px!important;
+  border:1px solid #dfe6f0!important;
+  box-shadow:0 18px 44px rgba(18,34,74,.08)!important;
+}
+
+.hero-badbear::before{
+  height:6px!important;
+  background:var(--bb-rainbow)!important;
+}
+
+.hero-etiqueta{
+  display:inline-flex!important;
+  align-items:center!important;
+  padding:7px 12px!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,var(--bb-soft-red),#fff8e9)!important;
+  color:var(--bb-red)!important;
+  font-weight:900!important;
+  letter-spacing:.75px!important;
+}
+
+.hero-badbear h2,
+.cabecera-teoria h2,
+.exam-hero h2,
+.atlas-hero h2,
+.repaso-hero h2,
+.sim-hero h2{
+  color:var(--bb-navy)!important;
+}
+
+.btn-principal,
+.bb-login-submit{
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--bb-rainbow)!important;
+  color:#fff!important;
+  box-shadow:0 10px 26px rgba(36,88,255,.18)!important;
+}
+
+.btn-principal:hover,
+.bb-login-submit:hover{
+  filter:saturate(1.12) brightness(.98);
+  transform:translateY(-1px);
+}
+
+.btn-secundario-inicio{
+  border-radius:999px!important;
+  border:1.5px solid #ccd6e5!important;
+  background:#fff!important;
+  color:var(--bb-navy)!important;
+}
+
+/* ---------- Tarjetas del inicio ---------- */
+.modulos-inicio{gap:15px!important}
+
+.tarjeta-modulo{
+  border-radius:22px!important;
+  border:1px solid #e1e7f0!important;
+  background:rgba(255,255,255,.96)!important;
+  box-shadow:0 8px 24px rgba(18,34,74,.055)!important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+
+.tarjeta-modulo::before{
+  height:5px!important;
+  border-radius:22px 22px 0 0;
+}
+
+.tarjeta-modulo:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 15px 32px rgba(18,34,74,.11)!important;
+}
+
+.tarjeta-modulo:nth-child(5n+1)::before{background:var(--bb-red)!important}
+.tarjeta-modulo:nth-child(5n+2)::before{background:var(--bb-orange-v)!important}
+.tarjeta-modulo:nth-child(5n+3)::before{background:var(--bb-yellow-v)!important}
+.tarjeta-modulo:nth-child(5n+4)::before{background:var(--bb-green)!important}
+.tarjeta-modulo:nth-child(5n+5)::before{background:var(--bb-blue-v)!important}
+
+.tarjeta-modulo:nth-child(5n+1) .modulo-numero{color:var(--bb-red)!important}
+.tarjeta-modulo:nth-child(5n+2) .modulo-numero{color:var(--bb-orange-v)!important}
+.tarjeta-modulo:nth-child(5n+3) .modulo-numero{color:#b98600!important}
+.tarjeta-modulo:nth-child(5n+4) .modulo-numero{color:var(--bb-green)!important}
+.tarjeta-modulo:nth-child(5n+5) .modulo-numero{color:var(--bb-blue-v)!important}
+
+.tarjeta-modulo h3{color:var(--bb-navy)!important}
+
+/* ---------- Paneles generales ---------- */
+.exam-hero,.exam-card,.exam-stat,
+.repaso-hero,.repaso-panel,
+.sim-hero,.sim-panel,
+.atlas-hero,.atlas-toolbar,.atlas-summary>div,.atlas-card,
+.cuaderno-card,.visor-pdf,.indice-temas,
+.media-hero,.media-stat,.tema-card,
+.progreso-audio-card,.panel-rendimiento,.resumen-unidad-item,
+.recon-hero,.practico-hero,.plan-hero,.historial-hero,.srs-hero{
+  border-radius:20px!important;
+}
+
+.exam-hero,.repaso-hero,.sim-hero,.atlas-hero,.media-hero,.indice-temas{
+  position:relative;
+  overflow:hidden;
+}
+
+.exam-hero::before,.repaso-hero::before,.sim-hero::before,.atlas-hero::before,.media-hero::before,.indice-temas::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;
+  height:5px;
+  background:var(--bb-rainbow)!important;
+  z-index:2;
+}
+
+/* ---------- Controles y opciones redondeadas ---------- */
+.exam-tools select,
+.exam-tools button,
+.exam-btn-simulador,
+.exam-nav button,
+.atlas-tab,
+.atlas-otra,
+.tema-accion,
+.media-btn,
+.tema-directo,
+.indice-completo,
+.repaso-btn,
+.sim-btn,
+.plan-btn,
+.srs-btn,
+button,
+select{
+  border-radius:14px!important;
+}
+
+.exam-tools button:hover,
+.exam-btn-simulador:hover,
+.tema-accion:hover,
+.media-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 7px 18px rgba(18,34,74,.09);
+}
+
+.exam-btn-simulador,
+.tema-accion.audio{
+  background:linear-gradient(135deg,var(--bb-navy),#213b78)!important;
+  border-color:transparent!important;
+  color:#fff!important;
+}
+
+.exam-btn-repaso,
+#btn-repasar-errores{
+  background:linear-gradient(135deg,#fff0ea,#fff7e5)!important;
+  border-color:#ffd1bc!important;
+  color:#b74124!important;
+}
+
+#btn-aleatorio{
+  background:var(--bb-soft-blue)!important;
+  border-color:#cbd9ff!important;
+  color:var(--bb-blue-v)!important;
+}
+
+#btn-reiniciar-exam{
+  background:#fff!important;
+  border-color:#dce3ed!important;
+  color:var(--bb-navy)!important;
+}
+
+.exam-opcion{
+  border-radius:15px!important;
+}
+
+.exam-opcion:hover:not(:disabled){
+  border-color:#8badff!important;
+  box-shadow:0 5px 14px rgba(36,88,255,.06);
+}
+
+/* ---------- Chips / etiquetas ---------- */
+.exam-eyebrow,.media-kicker,.repaso-kicker,.sim-kicker,.visor-etiqueta,.indice-temas-kicker,
+.tema-estado,.tema-chip,.bb-tema-fuente{
+  border-radius:999px!important;
+}
+
+/* ---------- Login / portada de acceso ---------- */
+.bb-login-page{
+  background:
+    radial-gradient(circle at 16% 18%,rgba(36,88,255,.15),transparent 30%),
+    radial-gradient(circle at 84% 18%,rgba(239,59,45,.12),transparent 28%),
+    radial-gradient(circle at 50% 92%,rgba(24,184,107,.10),transparent 30%),
+    #f5f7fb!important;
+}
+
+.bb-login-card{
+  border-radius:30px!important;
+  border:1px solid #e0e6ef!important;
+  box-shadow:0 26px 70px rgba(18,34,74,.15)!important;
+}
+
+.bb-login-card::before{
+  height:6px!important;
+  background:var(--bb-rainbow)!important;
+}
+
+.bb-login-brand h1{color:var(--bb-navy)!important}
+.bb-login-brand h1 span{
+  background:linear-gradient(90deg,var(--bb-blue-v),var(--bb-pink));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent!important;
+}
+
+.bb-login-badge{
+  border-radius:999px!important;
+  background:linear-gradient(135deg,#fff4df,#fff0e8)!important;
+  color:#a5481d!important;
+  border:1px solid #ffd0aa;
+}
+
+.bb-login-input{
+  border-radius:15px!important;
+}
+
+.bb-login-input:focus{
+  border-color:var(--bb-green)!important;
+  box-shadow:0 0 0 4px rgba(24,184,107,.12)!important;
+}
+
+/* ---------- Audio persistente ---------- */
+.bb-study-audio,
+.bb-audio-dock,
+[data-bb-audio-dock]{
+  border-radius:18px!important;
+  box-shadow:0 14px 34px rgba(18,34,74,.18)!important;
+}
+
+/* ---------- Móvil ---------- */
+@media(max-width:900px){
+  .bb-mobile-menu-btn{
+    border-radius:15px!important;
+    background:linear-gradient(135deg,var(--bb-navy),#1c376f)!important;
+    border-color:transparent!important;
+  }
+  .bb-header .nav-item{border-radius:14px!important}
+}
+
+@media(max-width:620px){
+  .hero-badbear,
+  .tarjeta-modulo,
+  .exam-hero,.exam-card,.exam-stat,
+  .indice-temas,.visor-pdf,.tema-card{
+    border-radius:18px!important;
+  }
+}
