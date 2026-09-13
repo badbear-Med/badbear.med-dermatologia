@@ -51,6 +51,45 @@
     document.documentElement.classList.remove("bb-auth-pendiente");
   }
 
+  function cargarMejorasMoviles() {
+    if (!document.querySelector('link[data-bb-mobile="1"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "mobile-fixes.css";
+      link.dataset.bbMobile = "1";
+      document.head.appendChild(link);
+    }
+  }
+
+  function prepararMenuMovil() {
+    const header = document.querySelector(".bb-header");
+    const nav = header && header.querySelector(".nav-principal");
+    if (!header || !nav || header.querySelector(".bb-mobile-menu-btn")) return;
+
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = "bb-mobile-menu-btn";
+    boton.setAttribute("aria-expanded", "false");
+    boton.setAttribute("aria-label", "Abrir menú de navegación");
+    boton.innerHTML = "☰ <span>Menú</span>";
+
+    boton.addEventListener("click", () => {
+      const abierto = header.classList.toggle("bb-menu-abierto");
+      boton.setAttribute("aria-expanded", abierto ? "true" : "false");
+      boton.innerHTML = abierto ? "✕ <span>Cerrar</span>" : "☰ <span>Menú</span>";
+    });
+
+    nav.querySelectorAll("a").forEach(enlace => {
+      enlace.addEventListener("click", () => {
+        header.classList.remove("bb-menu-abierto");
+        boton.setAttribute("aria-expanded", "false");
+        boton.innerHTML = "☰ <span>Menú</span>";
+      });
+    });
+
+    header.insertBefore(boton, nav);
+  }
+
   function agregarCerrarSesion() {
     if (document.getElementById("bb-auth-logout")) return;
     const boton = document.createElement("button");
@@ -115,9 +154,7 @@
       submit.disabled = true;
       submit.textContent = "VERIFICANDO…";
       try {
-        if (!window.crypto || !window.crypto.subtle) {
-          throw new Error("crypto-no-disponible");
-        }
+        if (!window.crypto || !window.crypto.subtle) throw new Error("crypto-no-disponible");
         const candidata = input.value.trim();
         const hash = await sha256Hex(BB_AUTH_SALT + candidata);
         if (hash === BB_AUTH_HASH) {
@@ -139,12 +176,14 @@
   }
 
   if (vigente()) {
+    cargarMejorasMoviles();
     quitarBloqueoVisual();
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", agregarCerrarSesion, { once: true });
-    } else {
+    const iniciarUI = () => {
+      prepararMenuMovil();
       agregarCerrarSesion();
-    }
+    };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciarUI, { once: true });
+    else iniciarUI();
     return;
   }
 
@@ -155,9 +194,6 @@
     return;
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", pantallaAcceso, { once: true });
-  } else {
-    pantallaAcceso();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", pantallaAcceso, { once: true });
+  else pantallaAcceso();
 })();
